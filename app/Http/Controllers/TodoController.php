@@ -1,16 +1,26 @@
 <?php
 
 namespace App\Http\Controllers;
-//DBからたすく取得
+
 use App\Todo;
 use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    
+    //--------------------
+    //todo一覧を取得
+    //--------------------
     public function index()
     {
-        //DBからたすく取得
-        $todo_list = Todo::all();
+        $todo_list = Todo::paginate(5);
+        //viewにtodo_listの値を渡す
         return view('todo/index', compact('todo_list'));
     }
 
@@ -41,9 +51,13 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    //----------------------
+    //指定のタスクの詳細を表示
+    //----------------------
     public function show($id)
     {
-        //
+        return view('todo/show', ['todo' => Todo::findOrFail($id)]);
     }
 
     /**
