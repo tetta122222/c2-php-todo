@@ -20,7 +20,7 @@ class TodoController extends Controller
     public function index()
     {
         $todo_list = Todo::paginate(5);
-        //viewにtodo_listの値を渡す
+        //index.blade.phpにtodo_listの値を渡す
         return view('todo/index', compact('todo_list'));
     }
 
