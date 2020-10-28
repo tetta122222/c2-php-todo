@@ -11,9 +11,19 @@ class TodoTableSeeder extends Seeder
      */
     public function run()
     {
+        for($i = 1; $i <= 10; $i++){
+            DB::table('users')->insert([
+                'name' => "ユーザー$i",
+                'email'=> "hoge+$i@test.com",
+                'password'=> bcrypt('password'),
+
+            ]);
+        }
+
         for($i = 1; $i <= 100; $i++){
             DB::table('todos')->insert([
                 'title' => "タスク$i",
+                'user_id' => $this->createUserIdByTaskId($i),
                 'due_date' => date('Y-m-d'),
                 'status' => 0,
                 'created_at' => date('Y-m-d H:i:s'),
@@ -21,4 +31,15 @@ class TodoTableSeeder extends Seeder
             ]);
         }
     }
+
+    /**
+    * タスクからuser_idを生成する
+    * @param int $task_id
+    * @return int
+    */
+    private function createUserIdByTaskId(int $task_id): int
+    {
+        return ceil($task_id*0.1);
+    } 
+
 }
