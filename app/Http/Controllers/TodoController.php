@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Todo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TodoController extends Controller
 {
+    
+    private const PAGE_SIZE = 5;
+    
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +23,8 @@ class TodoController extends Controller
     //--------------------
     public function index()
     {
-        $todo_list = Todo::paginate(5);
+        //現在ログインしているユーザーを返す
+        $todo_list = Auth::user()->todos()->paginate(self::PAGE_SIZE);
         //index.blade.phpにtodo_listの値を渡す
         return view('todo/index', compact('todo_list'));
     }
@@ -57,7 +62,10 @@ class TodoController extends Controller
     //----------------------
     public function show($id)
     {
-        return view('todo/show', ['todo' => Todo::findOrFail($id)]);
+        //findOrFail($id)・・・idが検出されなかったら404エラーを送る
+        //Auth・・・認証
+        $todo = Auth::user()->todos()->findOrFail($id);
+        return view('todo/show', compact('todo'));
     }
 
     /**

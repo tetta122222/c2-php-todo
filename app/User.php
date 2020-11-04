@@ -36,4 +36,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // ユーザに紐づくタスクを取得
+    public function todos()
+    {
+        // 投稿者とタスクを取得
+        return $this->hasMany('App\Todo');
+    }
 }
