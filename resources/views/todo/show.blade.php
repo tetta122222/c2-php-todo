@@ -29,8 +29,7 @@
             </tr>
             </tbody>
         </table>
-        <button class="btn btn-primary" type="button" onclick="history.back()">戻る</button>
-    </div>
+        @include('parts.button.back')    </div>
 </div>
 
 <!-- JS, Popper.js, and jQuery -->

@@ -18,6 +18,8 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
 
+
+//URLを有効にする
 Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('todo', 'TodoController', ['only' => [
         'index', 'show','create'
