@@ -50,6 +50,12 @@ class TodoController extends Controller
     public function store(Request $request)
     {
         //
+        $todo = new Todo();
+        $todo->title =$request->title;
+        $todo->due_date =$request->due_date;
+        $todo->status = Todo::STATUS_NOT_YET;
+        Auth::user()->todos()-> save($todo);
+        return view('welcome');
     }
 
     /**
@@ -65,7 +71,7 @@ class TodoController extends Controller
     public function show($id)
     {
         //findOrFail($id)・・・idが検出されなかったら404エラーを送る
-        //Auth・・・認証
+        //Auth・・・認証(だれの)
         $todo = Auth::user()->todos()->findOrFail($id);
         return view('todo/show', compact('todo'));
     }
