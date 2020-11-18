@@ -11,6 +11,7 @@
                 <tr>
                     <th>タイトル</th>
                     <th>期限</th>
+                    <th>編集</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -22,6 +23,7 @@
                             </a>
                         </td>
                         <td>{{ $todo->due_date }}</td>
+                        
                     </tr>
                 @endforeach
                 </tbody>
