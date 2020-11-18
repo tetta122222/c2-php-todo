@@ -83,9 +83,10 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id)
     {
-        
+        $todo = Auth::user()->todos()->findOrFail($id);
+        return view('todo/edit', compact('todo'));
     }
 
     /**

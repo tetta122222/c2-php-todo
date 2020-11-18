@@ -29,7 +29,7 @@
             </tr>
             </tbody>
         </table>
-        @include('parts.button.back')    </div>
+        @include('parts.back')    </div>
 </div>
 
 <!-- JS, Popper.js, and jQuery -->
