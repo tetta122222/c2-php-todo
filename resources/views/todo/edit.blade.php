@@ -3,7 +3,10 @@
 <div class="container">
     <div class="col-md-10">
         <h2 class="text-muted py-3">Todo 編集</h2>
+        <form action="/todo/{{ $todo->id }}" method="POST">
         @include('todo.input')
+        <button class="btn btn-primary" type="submit">作成</button>
+        </form>
         @include('parts.back')
     </div>
 </div>

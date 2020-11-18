@@ -8,8 +8,7 @@
                 @include('todo.input', ['todo' => null])
                 <button class="btn btn-primary" type="submit">作成</button>
             </form>
-            <hr>
-            
+            <hr> 
             @include('parts.back')
         </div>
     </div>

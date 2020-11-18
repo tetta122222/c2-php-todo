@@ -98,7 +98,11 @@ class TodoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $todo = Auth::user()->todos()->findOrFail($id);
+        $todo->title =$request->title;
+        $todo->due_date =$request->due_date;
+        $todo->save();
+        return redirect()->to('/todo/'. $todo->id);
     }
 
     /**
