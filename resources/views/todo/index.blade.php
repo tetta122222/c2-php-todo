@@ -11,7 +11,7 @@
                 <tr>
                     <th>タイトル</th>
                     <th>期限</th>
-                    
+                    <th>状態</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -23,7 +23,17 @@
                             </a>
                         </td>
                         <td>{{ $todo->due_date }}</td>
+                        <td>
+                            {{ $todo->getStatusText() }}
+                        </td>
                         <td><a href="/todo/{{ $todo->id }}/edit/" class="btn btn-success"><i class="far fa-edit mr-2"></i>編集</a></td>
+                        <th>
+                            <form action="/todo/{{ $todo->id }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button class="btn btn-danger" type="submit"><i class="fas fa-trash-alt mr-2"></i>削除</button>
+                            </form>
+                        </th>
                     </tr>
                 @endforeach
                 </tbody>
