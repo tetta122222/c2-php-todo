@@ -11,7 +11,7 @@
                 <tr>
                     <th>タイトル</th>
                     <th>期限</th>
-                    <th>編集</th>
+                    
                 </tr>
                 </thead>
                 <tbody>

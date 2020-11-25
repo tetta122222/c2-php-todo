@@ -4,6 +4,7 @@
     <div class="col-md-10">
         <h2 class="text-muted py-3">Todo 編集</h2>
         <form action="/todo/{{ $todo->id }}" method="POST">
+        @method('PUT')
         @include('todo.input')
         <button class="btn btn-primary" type="submit">作成</button>
         </form>

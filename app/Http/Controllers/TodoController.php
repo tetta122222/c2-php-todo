@@ -83,6 +83,9 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //---------------------
+    //タスクの編集
+    //-------------------
     public function edit(int $id)
     {
         $todo = Auth::user()->todos()->findOrFail($id);
@@ -96,7 +99,7 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateTodoRequest $request, $id)
     {
         $todo = Auth::user()->todos()->findOrFail($id);
         $todo->title =$request->title;
