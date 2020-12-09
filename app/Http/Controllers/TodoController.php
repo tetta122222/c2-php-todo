@@ -54,6 +54,7 @@ class TodoController extends Controller
         $todo = new Todo();
         $todo->title =$request->title;
         $todo->due_date =$request->due_date;
+        $todo->status =$request->status;
         $todo->status = Todo::STATUS_NOT_YET;
         Auth::user()->todos()-> save($todo);
         return view('welcome');
@@ -104,6 +105,7 @@ class TodoController extends Controller
         $todo = Auth::user()->todos()->findOrFail($id);
         $todo->title =$request->title;
         $todo->due_date =$request->due_date;
+        $todo->status =$request->status;
         $todo->save();
         return redirect()->to('/todo/'. $todo->id);
     }
