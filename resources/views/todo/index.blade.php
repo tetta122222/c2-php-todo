@@ -12,6 +12,8 @@
                     <th>タイトル</th>
                     <th>期限</th>
                     <th>状態</th>
+                    <th>    </th>
+                    <th>    </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -24,7 +26,18 @@
                         </td>
                         <td>{{ $todo->due_date }}</td>
                         <td>
-                            {{ $todo->getStatusText() }}
+                        <div class="form-group">
+      
+                        <select name="status" id="status" class="form-control">
+                            @foreach(\App\Todo::STATUS as $key => $val)
+                            <option
+                            value="{{ $key }}"
+                            {{ $todo && $key == old('status', $todo->status) ? 'selected' : '' }}
+                            >
+                            {{ $val }}
+                            </option>
+                            @endforeach
+                        </select>
                         </td>
                         <td><a href="/todo/{{ $todo->id }}/edit/" class="btn btn-success"><i class="far fa-edit mr-2"></i>編集</a></td>
                         <th>
@@ -33,6 +46,11 @@
                                 @csrf
                                 <button class="btn btn-danger" type="submit"><i class="fas fa-trash-alt mr-2"></i>削除</button>
                             </form>
+                            <form action="/todo/{{ $todo->id }}" method="POST">
+                                @method('PUT')
+                                @csrf
+                                <button class="btn btn-primary" type="submit">更新</button>
+                            </form> 
                         </th>
                     </tr>
                 @endforeach

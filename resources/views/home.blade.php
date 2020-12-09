@@ -13,8 +13,9 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
                     {{ __('You are logged in!') }}
+                    <br>
+                    <a href="/todo" class="btn btn-secondary">表示ページへ</a>
                 </div>
             </div>
         </div>

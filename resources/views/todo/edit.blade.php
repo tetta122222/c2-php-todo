@@ -6,7 +6,7 @@
         <form action="/todo/{{ $todo->id }}" method="POST">
         @method('PUT')
         @include('todo.input')
-        <button class="btn btn-primary" type="submit">作成</button>
+        <button class="btn btn-primary" type="submit">更新</button>
         </form>
         @include('parts.back')
     </div>

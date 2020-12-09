@@ -25,4 +25,5 @@ class Todo extends Model
 
         return self::STATUS[$this->status];
     }
+    
 }
