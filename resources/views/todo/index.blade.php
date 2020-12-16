@@ -9,11 +9,12 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th>タイトル</th>
-                    <th>期限</th>
-                    <th>状態</th>
-                    <th>    </th>
-                    <th>    </th>
+                    <th width="40%">タイトル</th>
+                    <th width="20%">期限</th>
+                    <th width="10%">状態</th>
+                    <th width="20%">期限</th>
+                    <th width="15%"></th>
+                    <th width="15%"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -26,31 +27,16 @@
                         </td>
                         <td>{{ $todo->due_date }}</td>
                         <td>
-                        <div class="form-group">
-      
-                        <select name="status" id="status" class="form-control">
-                            @foreach(\App\Todo::STATUS as $key => $val)
-                            <option
-                            value="{{ $key }}"
-                            {{ $todo && $key == old('status', $todo->status) ? 'selected' : '' }}
-                            >
-                            {{ $val }}
-                            </option>
-                            @endforeach
-                        </select>
+                            {{ $todo->getStatusText() }}
                         </td>
-                        <td><a href="/todo/{{ $todo->id }}/edit/" class="btn btn-success"><i class="far fa-edit mr-2"></i>編集</a></td>
+                        <td>{{ $todo->getDisplayDate() }}</td>
                         <th>
-                            <form action="/todo/{{ $todo->id }}" method="POST">
-                                @method('DELETE')
-                                @csrf
-                                <button class="btn btn-danger" type="submit"><i class="fas fa-trash-alt mr-2"></i>削除</button>
-                            </form>
-                            <form action="/todo/{{ $todo->id }}" method="POST">
-                                @method('PUT')
-                                @csrf
-                                <button class="btn btn-primary" type="submit">更新</button>
-                            </form> 
+                            <a href="/todo/{{ $todo->id }}/edit" class="btn btn-success"><i class="fas fa-edit mr-2"></i>編集</a>
+                        </th>
+                        <th>
+                            <button class="btn btn-danger delete-btn" type="button" data-toggle="modal" data-target="#delete-modal" data-todo_title="{{ $todo->title }}" data-todo_id="{{ $todo->id }}">
+                                <i class="fas fa-trash-alt mr-2"></i>削除
+                            </button>
                         </th>
                     </tr>
                 @endforeach
@@ -59,4 +45,9 @@
             {{ $todo_list->links() }}
         </div>
     </div>
+    @include('parts.modal.delete')
 @endsection
+
+@section('script')
+    <script src="{{ asset('/js/todo/app.js') }}"></script>
+@endsection 
